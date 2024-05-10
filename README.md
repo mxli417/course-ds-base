@@ -92,6 +92,17 @@ jupyter notebook
 - dvc run is outdated -> use dvc stage add instead
 - dvc repro to reproduce the stages
 - dvc repro -f to force complete rerun, -s for specific changes
+- automated versioning of dvc pipeline outputs
+
+### 5.3. DVC data management under the hood
+
+- DVC creates md5 hashes of files and checks if they already are tracked and their metadata already exists
+- the tracked files are saved into the DVC (project) cache directory
+- removes the original file from the working directory
+- creates a reflink / symlink to the working directory
+- saves metadata information to file.csv.dvc
+- works similar with directories
+
 
 ## OT:
 - python PEP index: https://peps.python.org/

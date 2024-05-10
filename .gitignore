@@ -174,6 +174,7 @@ cython_debug/
 data/*
 models/*
 reports/*
+tmp/*
 
 # Python
 __pycache__
