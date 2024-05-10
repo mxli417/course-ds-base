@@ -44,15 +44,27 @@ jupyter nbextension enable toc2/main
 jupyter notebook
 ```
 
+## 4. synopsis
+- don't use WOTs in jupyter NBs
+- start from a usable / concise project layout
+- modularize the code into a reusable, package(-able) structure and format
+- use config files rather than hard-coded config
+- structurize the POC / model training code into manageable pipeline stages
+- use dvc to track and version trainig data/assets/pipelines 
+- use dvc to run and reproduce the pipeline
+
+
 ## 5. Thoughts going through my head
 
 - no linter / import cleanup tools? 
 - config management by diverse, folder-dispersed yaml-files? -> hydra?!
 - sensitive information in jp-notebooks? -> better use nbstripout instead
 - usage of namespace packages: https://docs.python.org/3/reference/import.html#namespace-packages
+- relative imports on Windows systems requires careful handling of env vars / thoughts on structure -> better use packaging (as done here)
+- why special repo structure and not usage of a widely accepted cookiecutter approach?
 - basically only refers to PEP420, but is used here in context simply via grouping code under ./src
 - arg parse in stages instead of hydra / other config management packages and/or typer
-- relative imports on Windows systems requires careful handling of env vars / thoughts on structure -> better use packaging (as done here)
+
 
 ### 5.1 topic of the envvars + environment setup
 
@@ -84,3 +96,4 @@ jupyter notebook
 ## OT:
 - python PEP index: https://peps.python.org/
 - python packaging guide: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+- visual git explanations: http://marklodato.github.io/visual-git-guide/index-en.html
