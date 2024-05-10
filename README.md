@@ -52,6 +52,7 @@ jupyter notebook
 - usage of namespace packages: https://docs.python.org/3/reference/import.html#namespace-packages
 - basically only refers to PEP420, but is used here in context simply via grouping code under ./src
 - arg parse in stages instead of hydra / other config management packages and/or typer
+- relative imports on Windows systems requires careful handling of env vars / thoughts on structure -> better use packaging (as done here)
 
 ### 5.1 topic of the envvars + environment setup
 
@@ -76,3 +77,10 @@ jupyter notebook
 - dvc run -n "name" -d "dependency" -o "outputs" -p "params"
 - programmtically: dvc.yaml
     - specifies cmds, params, names, stages and the like
+- dvc run is outdated -> use dvc stage add instead
+- dvc repro to reproduce the stages
+- dvc repro -f to force complete rerun, -s for specific changes
+
+## OT:
+- python PEP index: https://peps.python.org/
+- python packaging guide: https://packaging.python.org/en/latest/tutorials/packaging-projects/

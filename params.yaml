@@ -1,5 +1,5 @@
 base:
-  random_stage: 42
+  random_state: 42
   log_level: INFO
 
 data_load:

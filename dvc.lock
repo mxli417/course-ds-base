@@ -1,0 +1,148 @@
+schema: '2.0'
+stages:
+  data_load:
+    cmd: python src/dumbo/stages/data_load.py --config=params.yaml
+    deps:
+    - path: src/dumbo/stages/data_load.py
+      md5: ff4ffa206b10af9a8a62682a81d67b3c
+      size: 1093
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_load:
+          dataset_csv: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/raw/iris.csv
+    outs:
+    - path: data/raw/iris.csv
+      md5: 4224576f0267bf88902f87f0f6200967
+      size: 2908
+  featurize:
+    cmd: python src/dumbo/stages/featurize.py --config=params.yaml
+    deps:
+    - path: data/raw/iris.csv
+      md5: 4224576f0267bf88902f87f0f6200967
+      size: 2908
+    - path: src/dumbo/stages/featurize.py
+      md5: 80636166a54bece672c8bbf545075634
+      size: 1483
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_load:
+          dataset_csv: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/raw/iris.csv
+        featurize:
+          features_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/featured_iris.csv
+          target_column: target
+    outs:
+    - path: data/processed/featured_iris.csv
+      md5: 5d03a1564b3038fc35a842f8e4bde491
+      size: 7411
+  data_split:
+    cmd: python src/dumbo/stages/data_split.py --config=params.yaml
+    deps:
+    - path: data/processed/featured_iris.csv
+      md5: 5d03a1564b3038fc35a842f8e4bde491
+      size: 7411
+    - path: src/dumbo/stages/data_split.py
+      md5: f6d9acfe64a09be61685e2fdd5d7ebba
+      size: 1375
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_split:
+          test_size: 0.2
+          trainset_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/train_iris.csv
+          testset_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/test_iris.csv
+        featurize:
+          features_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/featured_iris.csv
+          target_column: target
+    outs:
+    - path: data/processed/test_iris.csv
+      md5: b5e45593a772fc66629488e1806505c4
+      size: 1523
+    - path: data/processed/train_iris.csv
+      md5: ed8a7e5ba0a211251bdee6c498fe3eb4
+      size: 5845
+  train:
+    cmd: python src/dumbo/stages/train.py --config=params.yaml
+    deps:
+    - path: data/processed/train_iris.csv
+      md5: ed8a7e5ba0a211251bdee6c498fe3eb4
+      size: 5845
+    - path: src/dumbo/stages/train.py
+      md5: 6b2aa9168f9d10ba2dcaa6fd2396d190
+      size: 1499
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_split.trainset_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/train_iris.csv
+        featurize.target_column: target
+        train:
+          cv: 3
+          estimator_name: logreg
+          estimators:
+            logreg:
+              param_grid:
+                C:
+                - 0.001
+                max_iter:
+                - 100
+                solver:
+                - lbfgs
+                multi_class:
+                - multinomial
+            svm:
+              param_grid:
+                C:
+                - 0.1
+                - 1.0
+                kernel:
+                - rbf
+                - linear
+                gamma:
+                - scale
+                degree:
+                - 3
+                - 5
+          model_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/models/model.joblib
+    outs:
+    - path: models/model.joblib
+      md5: cc7ccf03c48bc45c8e6ac169b86f4810
+      size: 2915
+  evaluate:
+    cmd: python src/dumbo/stages/evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_iris.csv
+      md5: b5e45593a772fc66629488e1806505c4
+      size: 1523
+    - path: models/model.joblib
+      md5: cc7ccf03c48bc45c8e6ac169b86f4810
+      size: 2915
+    - path: src/dumbo/stages/evaluate.py
+      md5: 8f0b5e7dde9ce7840df7509791a3ba3d
+      size: 2392
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_split.testset_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/test_iris.csv
+        evaluate:
+          reports_dir: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/reports
+          metrics_file: metrics.json
+          confusion_matrix_image: confusion_matrix.png
+        featurize.target_column: target
+    outs:
+    - path: reports/confusion_matrix.png
+      md5: 2756364a7e932ce82400e5731b5acc89
+      size: 24999
+    - path: reports/metrics.json
+      md5: d533847a0ca14ca93752b1b1f1df349e
+      size: 32

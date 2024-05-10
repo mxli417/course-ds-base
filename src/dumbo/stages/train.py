@@ -5,8 +5,8 @@ import joblib
 import pandas as pd
 import yaml
 
-from src.train.train import train
-from src.utils.logs import get_logger
+from dumbo.train.train import train
+from dumbo.utils.logs import get_logger
 
 
 def train_model(config_path: Text) -> None:
@@ -40,6 +40,7 @@ def train_model(config_path: Text) -> None:
     logger.info("Save model")
     models_path = config["train"]["model_path"]
     joblib.dump(model, models_path)
+    print("Updated the model train stage")
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import pandas as pd
 import yaml
 from sklearn.datasets import load_iris
 
-from src.utils.logs import get_logger
+from dumbo.utils.logs import get_logger
 
 
 def data_load(config_path: Text) -> None:
@@ -26,9 +26,9 @@ def data_load(config_path: Text) -> None:
         colname.strip(" (cm)").replace(" ", "_") for colname in dataset.columns.tolist()
     ]
     logger.info("Save raw data")
-    dataset.to_csv(config["data"]["dataset_csv"], index=False)
+    dataset.to_csv(config["data_load"]["dataset_csv"], index=False)
 
-    print(f"Data load complete: {dataset.head}")
+    print(f"Data load complete: {dataset.head()}")
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ from typing import Text
 import pandas as pd
 import yaml
 
-from src.utils.logs import get_logger
+from dumbo.utils.logs import get_logger
 
 
 def featurize(config_path: Text) -> None:

@@ -9,8 +9,8 @@ import yaml
 from sklearn.datasets import load_iris
 from sklearn.metrics import confusion_matrix, f1_score
 
-from src.report.visualization import plot_confusion_matrix
-from src.utils.logs import get_logger
+from dumbo.report.visualization import plot_confusion_matrix
+from dumbo.utils.logs import get_logger
 
 
 def evaluate_model(config_path: Text) -> None:

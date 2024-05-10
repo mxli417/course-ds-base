@@ -5,7 +5,7 @@ import pandas as pd
 import yaml
 from sklearn.model_selection import train_test_split
 
-from src.utils.logs import get_logger
+from dumbo.utils.logs import get_logger
 
 
 def data_split(config_path: Text) -> None:
