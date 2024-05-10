@@ -114,9 +114,13 @@ jupyter notebook
 
 ### 5.4. Comparing experiments and metrics tracking with dvc
 
-- cumbersome, not as straightforward as mlflow, for example
+- need specific lines in the dvc.yaml, not as straightforward as mlflow, for example
 - allows versioning differences in metrics / tracking
-- 
+- plotting functions can handle csv files and also be used to generate the diff between different runs
+- handy, but need a son-specified underlying template for specific data sources
+- dvc then takes the template and the source & generates html pages from that
+- these can be stored as png/jpg files
+
 
 
 ## OT:
