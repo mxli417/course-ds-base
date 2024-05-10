@@ -1,6 +1,7 @@
 # IDEs
 .idea
 .vscode
+.env
 
 ## OS configs
 .DS_Store
