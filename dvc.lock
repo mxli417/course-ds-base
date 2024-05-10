@@ -91,9 +91,9 @@ stages:
             logreg:
               param_grid:
                 C:
-                - 0.01
+                - 0.05
                 max_iter:
-                - 300
+                - 150
                 solver:
                 - lbfgs
                 multi_class:
@@ -114,7 +114,8 @@ stages:
           model_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/models/model.joblib
     outs:
     - path: models/model.joblib
-      md5: bc7b60225e1b41da97982987b32575ff
+      hash: md5
+      md5: 29066badda175e313f99c64bb098f059
       size: 2995
   evaluate:
     cmd: python src/dumbo/stages/evaluate.py --config=params.yaml
@@ -123,7 +124,8 @@ stages:
       md5: b5e45593a772fc66629488e1806505c4
       size: 1523
     - path: models/model.joblib
-      md5: bc7b60225e1b41da97982987b32575ff
+      hash: md5
+      md5: 29066badda175e313f99c64bb098f059
       size: 2995
     - path: src/dumbo/stages/evaluate.py
       md5: d8dcb5d6c2b7e0abf99dfec8d17fc7e4
@@ -142,11 +144,11 @@ stages:
         featurize.target_column: target
     outs:
     - path: reports/confusion_matrix.png
-      md5: 7a7c604bf7898a5677c3f7f600fc672f
-      size: 25024
+      md5: 8c8194384821437a1148290e04345521
+      size: 24999
     - path: reports/confusion_matrix_data.csv
-      md5: 0c4c338c5b47da4e5d4b8caf497c1b53
-      size: 604
+      md5: 52260ec3144eac62837f1319a1af0d3e
+      size: 605
     - path: reports/metrics.json
-      md5: d533847a0ca14ca93752b1b1f1df349e
+      md5: 229a47918a9dd3891bff325672078ceb
       size: 32

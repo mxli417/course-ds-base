@@ -64,6 +64,8 @@ jupyter notebook
 - why special repo structure and not usage of a widely accepted cookiecutter approach?
 - basically only refers to PEP420, but is used here in context simply via grouping code under ./src
 - arg parse in stages instead of hydra / other config management packages and/or typer
+- DS blueprint is also mentioned: https://data-science-blueprint.readthedocs.io/en/latest/presentation/schema.html
+
 
 
 ### 5.1 topic of the envvars + environment setup
@@ -112,14 +114,35 @@ jupyter notebook
 - dvc import to add remote storages into the data versioning & enable tracking of new data
 
 
-### 5.4. Comparing experiments and metrics tracking with dvc
+### 5.4. Comparing experiments, plotting and metrics tracking with dvc
 
 - need specific lines in the dvc.yaml, not as straightforward as mlflow, for example
 - allows versioning differences in metrics / tracking
 - plotting functions can handle csv files and also be used to generate the diff between different runs
-- handy, but need a son-specified underlying template for specific data sources
+- handy, but need a hand-specified underlying template for specific data sources
+- everything beyond base templates comes with extra work
 - dvc then takes the template and the source & generates html pages from that
-- these can be stored as png/jpg files
+- these can be stored as png/jpg files & compared 
+- dvc can also help tracking model training checkpoints, integrated code and config changes
+- using the `--live` flag enables dvc-live tracking of the model training progress (especially helpful in deep learning scenarios)
+- this also needs new lines importing dvclive, for example in the training scripts, as well as epoch start/stop tasks
+- details for model training progress tracking (esp. training time, etc.) -> not on the branche of the og training repo?!
+- DVC Studio -> setup howto? 
+    - create account
+    - 
+
+### 5.5. Experiments management and collaboration
+
+- dvc also allows cml-style -S --set-params to edit the params.yaml file with dvc exp ("experiment")
+- users can trigger different runs with that, instead of using dv repro to only run specific sections under changes
+- hence, dvc also supports hydra-style overrides, including jobs, queuing, etc.
+- also allows parallel, sequential job working
+- dvc exp show --include-params=featurize
+- dvc exp branch + ID + name -> creates a new branch with git
+- dvc exp apply + ID -> gets a particular experiment into the current workspace
+
+
+
 
 
 
