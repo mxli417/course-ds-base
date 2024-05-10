@@ -102,6 +102,8 @@ jupyter notebook
 - creates a reflink / symlink to the working directory
 - saves metadata information to file.csv.dvc
 - works similar with directories
+- dvc status, dvc checkout available
+- manual checkout also the associated git commits
 
 
 ## OT:
