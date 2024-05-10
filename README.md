@@ -71,6 +71,7 @@ jupyter notebook
 - pip install dvc
 - pip install "dvc[s3]" (or [all] to support all remote stages)
 - init: dvc init (-> creates .dvc)
+- then after the init git add . / git commit -m "init dvc"
 - adding changes to dvc works just like with git 
 - dvc run -n "name" -d "dependency" -o "outputs" -p "params"
 - programmtically: dvc.yaml
