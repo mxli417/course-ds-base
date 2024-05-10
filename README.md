@@ -112,6 +112,12 @@ jupyter notebook
 - dvc import to add remote storages into the data versioning & enable tracking of new data
 
 
+### 5.4. Comparing experiments and metrics tracking with dvc
+
+- cumbersome, not as straightforward as mlflow, for example
+- allows versioning differences in metrics / tracking
+- 
+
 
 ## OT:
 - python PEP index: https://peps.python.org/
