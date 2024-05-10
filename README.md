@@ -104,9 +104,17 @@ jupyter notebook
 - works similar with directories
 - dvc status, dvc checkout available
 - manual checkout also the associated git commits
+- dvc checkout:
+    - helps in checking out local remote files
+    - but no version / branch naming?! -> bc. it should be associated with specific git branches and associated .lock - files
+    - adds additional source of errors if people miss out on running checkout after git checkout
+- dvc get to download files from a remote only
+- dvc import to add remote storages into the data versioning & enable tracking of new data
+
 
 
 ## OT:
 - python PEP index: https://peps.python.org/
 - python packaging guide: https://packaging.python.org/en/latest/tutorials/packaging-projects/
 - visual git explanations: http://marklodato.github.io/visual-git-guide/index-en.html
+- git explanation: https://www.youtube.com/watch?v=P6jD966jzlk

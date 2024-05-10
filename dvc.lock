@@ -86,7 +86,7 @@ stages:
         featurize.target_column: target
         train:
           cv: 3
-          estimator_name: logreg
+          estimator_name: svm
           estimators:
             logreg:
               param_grid:
@@ -114,8 +114,8 @@ stages:
           model_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/models/model.joblib
     outs:
     - path: models/model.joblib
-      md5: cc7ccf03c48bc45c8e6ac169b86f4810
-      size: 2915
+      md5: de68a84c25af7a560c97315794209069
+      size: 8671
   evaluate:
     cmd: python src/dumbo/stages/evaluate.py --config=params.yaml
     deps:
@@ -123,8 +123,8 @@ stages:
       md5: b5e45593a772fc66629488e1806505c4
       size: 1523
     - path: models/model.joblib
-      md5: cc7ccf03c48bc45c8e6ac169b86f4810
-      size: 2915
+      md5: de68a84c25af7a560c97315794209069
+      size: 8671
     - path: src/dumbo/stages/evaluate.py
       md5: 8f0b5e7dde9ce7840df7509791a3ba3d
       size: 2392
@@ -141,8 +141,8 @@ stages:
         featurize.target_column: target
     outs:
     - path: reports/confusion_matrix.png
-      md5: 2756364a7e932ce82400e5731b5acc89
-      size: 24999
+      md5: de88375421539ac6b05c4b3ac47b0e99
+      size: 24920
     - path: reports/metrics.json
-      md5: d533847a0ca14ca93752b1b1f1df349e
-      size: 32
+      md5: 3329ba1a6b18407f725a1e25a5500560
+      size: 17
