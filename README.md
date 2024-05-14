@@ -46,9 +46,9 @@ jupyter notebook
 
 ## 4. synopsis
 - don't use WOTs in jupyter NBs
-- start from a usable / concise project layout
+- start from a reusable / concise / installable project layout
 - modularize the code into a reusable, package(-able) structure and format
-- use config files rather than hard-coded config
+- use config files rather than hard-coded config & config management tools
 - structurize the POC / model training code into manageable pipeline stages
 - use dvc to track and version trainig data/assets/pipelines 
 - use dvc to run and reproduce the pipeline
@@ -129,7 +129,7 @@ jupyter notebook
 - details for model training progress tracking (esp. training time, etc.) -> not on the branche of the og training repo?!
 - DVC Studio -> setup howto? 
     - create account
-    - 
+    - follow the instructions here: https://dvc.org/doc/studio/user-guide/git-connections/github-app
 
 ### 5.5. Experiments management and collaboration
 
@@ -142,8 +142,27 @@ jupyter notebook
 - dvc exp apply + ID -> gets a particular experiment into the current workspace
 
 
+### 5.6. Data registry and additional topics with DVC: CML
 
+- middleware on top of storage systems -> i.e. git repo + dvc tracking **is** the registry
+- persist data sets, feature stores, models
+- call / load from cli or via python dvc package
+- CML ~= continuous machine learning, with the main use being, after iterative:
 
+>"We can use GitHub Actions or GitLab CI/CD, and Bitbucket Pipelines to provision >cloud instances from our vendor of choice. CML will then run our pipeline on the 
+>provisioned instance, create a pull request for the experiment, and generate a 
+>report that shows the experiment's results.
+>We can define multiple triggers to run our pipeline in CML. Typically we will 
+>run our pipeline whenever we create a new pull request for an experiment, but 
+>we can also imagine automating periodic retraining. Whatever our use case, we 
+>can tailor CML to our needs."
+
+- CML provides CI/CD for ML projects and helps run pipelines in the cloud
+- CML for the cloud, getting started: https://github.com/iterative/cml#getting-started
+- may be cloud-agnostic, but does not in itself offer more than Azure ML or the like
+- upside: close git integration 
+- also helsp with versioning experiments & integrating them into a ML repo:
+https://dvc.ai/blog/ml-experiment-versioning
 
 
 ## OT:

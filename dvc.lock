@@ -9,7 +9,7 @@ stages:
     params:
       params.yaml:
         base:
-          random_state: 42
+          random_state: 1492
           log_level: INFO
         data_load:
           dataset_csv: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/raw/iris.csv
@@ -29,7 +29,7 @@ stages:
     params:
       params.yaml:
         base:
-          random_state: 42
+          random_state: 1492
           log_level: INFO
         data_load:
           dataset_csv: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/raw/iris.csv
@@ -52,7 +52,7 @@ stages:
     params:
       params.yaml:
         base:
-          random_state: 42
+          random_state: 1492
           log_level: INFO
         data_split:
           test_size: 0.2
@@ -63,24 +63,27 @@ stages:
           target_column: target
     outs:
     - path: data/processed/test_iris.csv
-      md5: b5e45593a772fc66629488e1806505c4
-      size: 1523
+      hash: md5
+      md5: f106c388c7209e82fdded5bda2d76d26
+      size: 1533
     - path: data/processed/train_iris.csv
-      md5: ed8a7e5ba0a211251bdee6c498fe3eb4
-      size: 5845
+      hash: md5
+      md5: 5a3e4736325d62023a0bdbf6eb7eb2d9
+      size: 5835
   train:
     cmd: python src/dumbo/stages/train.py --config=params.yaml
     deps:
     - path: data/processed/train_iris.csv
-      md5: ed8a7e5ba0a211251bdee6c498fe3eb4
-      size: 5845
+      hash: md5
+      md5: 5a3e4736325d62023a0bdbf6eb7eb2d9
+      size: 5835
     - path: src/dumbo/stages/train.py
       md5: 6b2aa9168f9d10ba2dcaa6fd2396d190
       size: 1499
     params:
       params.yaml:
         base:
-          random_state: 42
+          random_state: 1492
           log_level: INFO
         data_split.trainset_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/train_iris.csv
         featurize.target_column: target
@@ -115,17 +118,18 @@ stages:
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 29066badda175e313f99c64bb098f059
+      md5: 2be9538e8b270fd54ecb75b1ad421de1
       size: 2995
   evaluate:
     cmd: python src/dumbo/stages/evaluate.py --config=params.yaml
     deps:
     - path: data/processed/test_iris.csv
-      md5: b5e45593a772fc66629488e1806505c4
-      size: 1523
+      hash: md5
+      md5: f106c388c7209e82fdded5bda2d76d26
+      size: 1533
     - path: models/model.joblib
       hash: md5
-      md5: 29066badda175e313f99c64bb098f059
+      md5: 2be9538e8b270fd54ecb75b1ad421de1
       size: 2995
     - path: src/dumbo/stages/evaluate.py
       md5: d8dcb5d6c2b7e0abf99dfec8d17fc7e4
@@ -133,7 +137,7 @@ stages:
     params:
       params.yaml:
         base:
-          random_state: 42
+          random_state: 1492
           log_level: INFO
         data_split.testset_path: C:/Users/mxmd/Desktop/dvc learning projects/course-ds-base/data/processed/test_iris.csv
         evaluate:
@@ -144,11 +148,14 @@ stages:
         featurize.target_column: target
     outs:
     - path: reports/confusion_matrix.png
-      md5: 8c8194384821437a1148290e04345521
-      size: 24999
+      hash: md5
+      md5: c1058fa123ea8052360d640c1182ad27
+      size: 25139
     - path: reports/confusion_matrix_data.csv
-      md5: 52260ec3144eac62837f1319a1af0d3e
-      size: 605
+      hash: md5
+      md5: 9ed0eb747d9c9f17f2295d02cbb6924a
+      size: 603
     - path: reports/metrics.json
-      md5: 229a47918a9dd3891bff325672078ceb
+      hash: md5
+      md5: 4c588bf7c5a7f19a60d7ee8bca6fa5fe
       size: 32
